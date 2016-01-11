@@ -1,7 +1,7 @@
 {
   "name": "ADXL345",
   "description": "A acceleration sensor library for Arduino",
-  "keywords": "sensor, acceleration",
+  "keywords": "sensor,accelerometer,i2c",
   "authors":
   {
     "name": "Hideki Hamada",
