@@ -12,3 +12,4 @@ ADXL345 (A acceleration sensor) library for Arduino.
 
 [please see example code](./examples/ReadRGB/ReadXYZ.ino)
 
+
