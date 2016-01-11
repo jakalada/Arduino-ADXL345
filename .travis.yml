@@ -1,0 +1,19 @@
+language: python
+python:
+    - "2.7"
+
+# Cache PlatformIO packages
+sudo: false
+cache:
+    directories:
+        - "~/.platformio"
+
+env:
+    - PLATFORMIO_CI_SRC=examples/ReadXYZ
+
+install:
+    - pip install -U platformio
+
+script:
+    - platformio ci --lib="." --project-conf=platformio.ini
+
