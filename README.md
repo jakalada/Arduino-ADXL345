@@ -4,12 +4,11 @@
 
 ADXL345 (A acceleration sensor) library for Arduino.
 
-## Download
+## Install
 
-[download zip file](https://github.com/jakalada/Arduino-ADXL345/archive/master.zip)
+[Download the latest library release.](https://github.com/jakalada/Arduino-ADXL345/releases/latest)
 
 ## Examples
 
-[please see example code](./examples/ReadXYZ/ReadXYZ.ino)
-
+[Please see example code.](./examples)
 
