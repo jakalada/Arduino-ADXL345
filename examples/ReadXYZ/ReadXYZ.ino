@@ -5,7 +5,7 @@ ADXL345 accel(ADXL345_STD);
 
 void setup() {
   Serial.begin(9600);
-  accel.begin();
+  Wire.begin();
 
   byte deviceID = accel.readDeviceID();
   if (deviceID != 0) {

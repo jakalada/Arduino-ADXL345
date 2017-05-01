@@ -8,7 +8,6 @@ ADXL345	KEYWORD1
 # Methods and Functions (KEYWORD2)
 #######################################
 
-begin	KEYWORD2
 start	KEYWORD2
 stop	KEYWORD2
 update	KEYWORD2

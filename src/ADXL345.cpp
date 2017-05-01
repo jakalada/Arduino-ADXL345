@@ -42,7 +42,8 @@
 #define REG_FIFO_CTL       0x38    // R/W,   00000000,   FIFO control
 #define REG_FIFO_STATUS    0x39    // R,     00000000,   FIFO status
 
-ADXL345::ADXL345(uint8_t i2cAddress) {
+ADXL345::ADXL345(uint8_t i2cAddress, TwoWire *wire) {
+  _wire = wire;
   _i2cAddress = i2cAddress;
 
   _xyz[0] = 0; // x
@@ -54,10 +55,6 @@ const float ADXL345::kRatio2g  = (float) (2 * 2) / 1024.0f;
 const float ADXL345::kRatio4g  = (float) (4 * 2) / 1024.0f;
 const float ADXL345::kRatio8g  = (float) (8 * 2) / 1024.0f;
 const float ADXL345::kRatio16g = (float) (16 * 2) / 1024.0f;
-
-void ADXL345::begin() {
-  Wire.begin();
-}
 
 bool ADXL345::start() {
   _powerCtlBits.measure = 1;
@@ -159,10 +156,10 @@ bool ADXL345::write(uint8_t value) {
 }
 
 bool ADXL345::write(uint8_t *values, size_t size) {
-  Wire.beginTransmission(_i2cAddress);
+  _wire->beginTransmission(_i2cAddress);
 
-  if (Wire.write(values, size) == size) {
-    switch (Wire.endTransmission()) {
+  if (_wire->write(values, size) == size) {
+    switch (_wire->endTransmission()) {
       case 0: // success
         return true;
 
@@ -182,16 +179,16 @@ bool ADXL345::write(uint8_t *values, size_t size) {
         return false;
     }
   } else {
-    Wire.endTransmission();
+    _wire->endTransmission();
     return false;
   }
 }
 
 bool ADXL345::read(uint8_t *values, int size) {
-  Wire.requestFrom(_i2cAddress, size);
-  if (Wire.available() == size) {
+  _wire->requestFrom(_i2cAddress, size);
+  if (_wire->available() == size) {
     for (uint8_t i = 0; i < size; i++) {
-      values[i] = Wire.read();
+      values[i] = _wire->read();
     }
     return true;
   } else {

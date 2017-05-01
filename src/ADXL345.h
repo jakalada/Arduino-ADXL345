@@ -76,6 +76,7 @@ class ADXL345 {
     static const float kRatio8g;
     static const float kRatio16g;
 
+    TwoWire *_wire;
     int8_t _i2cAddress;
     int16_t _xyz[3];
     PowerCtlBits _powerCtlBits;
@@ -92,8 +93,7 @@ class ADXL345 {
     bool writeRegister(uint8_t address, uint8_t value);
 
   public:
-    ADXL345(uint8_t i2cAddress);
-    void begin();
+    ADXL345(uint8_t i2cAddress, TwoWire *wire=&Wire);
     bool start();
     bool stop();
     uint8_t readDeviceID();
